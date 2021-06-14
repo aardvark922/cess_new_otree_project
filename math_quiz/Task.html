@@ -1,0 +1,27 @@
+{{ block styles }}
+    <style>
+        ._formfield {
+            display: flex;
+        }
+        .col-form-label {
+            margin-right: 1rem;
+        }
+    </style>
+{{ endblock }}
+
+{{ block title }}
+    Math Quiz
+{{ endblock }}
+
+{{ block content }}
+    <p>
+        Please, solve the equations displayed below
+    </p>
+
+    {{ for q in questions }}
+        <div>{{ formfield q.0 label=q.1 }}</div>
+    {{ endfor }}
+
+    {{ next_button }}
+
+{{ endblock }}

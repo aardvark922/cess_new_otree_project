@@ -1,0 +1,24 @@
+{{ block styles }}
+    <link href="{{ static 'entry_survey/css/entry_survey.css' }}" rel="stylesheet">
+{{ endblock }}
+
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+    <h2 class="text-center border-bottom mb-3">
+        More questions....
+    </h2>
+    <p>
+        Here are a few more questions that I would like to ask from you！
+    </p>
+    <!--Include all input fields needed in the web page using the {{ formfields }} oTree tag.
+    Input field will be displayed with the default sytle set by oTree and in the order they have been
+    passed to the "form_fields" attribute of the corresponding Page class-->
+    {{ formfields }}
+
+    <!--Customise button to submit the page. This replace the default oTree tag {{ next_button }}-->
+    <p class="text-center mt-5">
+        <button class="otree-btn-next btn btn-primary">Submit</button>
+    </p>
+{{ endblock }}

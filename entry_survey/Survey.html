@@ -1,0 +1,76 @@
+{{ block scripts }}
+    <script>
+        $(function () {
+            // Use JQuery selectors to select DOM elements and assign them to variables
+            // NB: DOM => Document Object Model => a representation of a web page in terms of nodes and elements
+
+            let projectField = $('[name=project]'),             // Select input field named "project"
+                project = projectField.parents('._formfield'),  // Select element with class "_formfield"
+                myP = $('input[name=has_project]');             // Select input field named "has_project"
+
+            projectField.prop('rows', '6');                     // Set number of rows for the textfield "project"
+
+            myP.on('change', function () {                      // Attach event listener to input "has_project"
+                if ($(this).val() === '0') {                    // listening to when its value change
+                    project.hide();                             // If value is "0" (a string) hide project input container
+                    projectField.val('');                       // and reset its value to an empty string
+                } else {
+                    project.show();                             // Otherwise, show the project input container
+                }
+            })
+        })
+    </script>
+{{ endblock }}
+
+{{ block styles }}
+    <!--Include the stylesheet file used to style the page using the "link" tag and giving the path to the
+    stylesheet file.-->
+    <link href="{{ static 'entry_survey/css/entry_survey.css' }}" rel="stylesheet">
+{{ endblock }}
+
+{{ block title }}
+{{ endblock }}
+{{ block content }}
+
+    <!--Include images and title on top of the page-->
+    <div class="container-fluid border-bottom mb-3">
+        <div class="row justify-content-between">
+            <div class="col mb-2">
+                <img src="{{ static 'entry_survey/img/cess_logo.png' }}" width="80%">
+            </div>
+            <div class="col mb-2 order-sm-last">
+                <img src="{{ static 'entry_survey/img/oxford_logo.png' }}" width="80%" class="float-end">
+            </div>
+            <h2 class="col-sm text-center mb-2">
+                CESS oTree Summer Course 2021<br>
+            </h2>
+        </div>
+    </div>
+
+    <!--Paragraphs of the survey intro-->
+    <p>
+        Greetings!
+    </p>
+    <p>
+        Here is Tom, your instructor for the CESS course on oTree that you have registered for.
+    </p>
+    <p>
+        I would really appreciate if you could spare a few minutes to fill out this super short survey
+        before the beginning of the course.
+    </p>
+    <p class="border-bottom">
+        Your answers will be treated confidentially. They will help me to better tailor the
+        course content to your needs and skills.
+    </p>
+
+    <!--Include all input fields needed in the web page using the {{ formfields }} oTree tag.
+    Input field will be displayed with the default sytle set by oTree and in the order they have been
+    passed to the "form_fields" attribute of the corresponding Page class-->
+    {{ formfields }}
+
+    <!--Customise button to submit the page. This replace the default oTree tag {{ next_button }}-->
+    <p class="text-center mt-5">
+        <button class="otree-btn-next btn btn-primary">Submit</button>
+    </p>
+
+{{ endblock }}
